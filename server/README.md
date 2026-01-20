@@ -7,8 +7,9 @@ This folder contains the Node.js backend code.
 - `database.js`: SQLite connection and Model definitions.
 
 ## Subdirectories
+- `modules/`: Feature modules (routes, controllers, services per domain).
 - `models/`: Database schema documentation.
-- `utils/`: Helper scripts (e.g., scraper).
+- `utils/`: Helper scripts.
 
 ## How to Run
 From the project root:

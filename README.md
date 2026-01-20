@@ -5,13 +5,13 @@ A modern, responsive affiliate landing page built with **Node.js**, **Express**,
 ## Features
 - **Frontend**: Lightweight HTML/CSS/JS (served statically).
 - **Backend**: Express.js server with SQLite database.
-- **Scraping**: Server-side scraping (`axios` + `cheerio`) for resolving affiliate redirects (Shopee, Tokopedia, TikTok).
-- **Admin**: "Auto-Fill" feature to fetch product metadata automatically.
+- **Admin**: Simple admin form to add products.
 
 ## Directory Structure
-- `server/`: Backend code (API, Database, Scraper).
-- `public/`: Frontend static files (HTML, Assets).
-- `public/assets`: CSS, JS, and Images.
+- `server/`: Backend code (API, Database).
+- `server/modules/`: Feature modules (routes, controllers, services).
+- `server/public/`: Frontend static files (HTML, Assets).
+- `server/public/assets`: CSS, JS, and Images.
 
 ## How to Run
 1. Install dependencies:
@@ -26,4 +26,3 @@ A modern, responsive affiliate landing page built with **Node.js**, **Express**,
 
 ## API Endpoints
 - `GET /api/products`: List all products.
-- `POST /api/scrape`: Extract metadata from URL (handles redirects).

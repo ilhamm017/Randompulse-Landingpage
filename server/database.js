@@ -36,13 +36,16 @@ const Product = sequelize.define('Product', {
         type: DataTypes.STRING,
         allowNull: true
     },
+    images: {
+        type: DataTypes.JSON,
+        allowNull: true
+    },
     link: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    // Optional: Store original scraped metadata if needed later
-    raw_meta: {
-        type: DataTypes.JSON,
+    productNumber: {
+        type: DataTypes.INTEGER,
         allowNull: true
     }
 });
