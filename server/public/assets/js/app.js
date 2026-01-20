@@ -121,7 +121,6 @@ const initAdmin = () => {
     const listView = document.getElementById('listView');
     const addView = document.getElementById('addView');
     const statTotal = document.getElementById('statTotal');
-    const cancelEdit = document.getElementById('cancelEdit');
 
     if (!form || !list) return;
 
@@ -262,28 +261,6 @@ const initAdmin = () => {
         if (pager) pager.innerHTML = buttons.join('');
     };
 
-    const resetForm = () => {
-        form.reset();
-        editingId = null;
-        if (submitBtn) submitBtn.textContent = 'Tambah Produk';
-        if (formTitle) formTitle.textContent = 'Tambah Barang Baru';
-        const previewImgs = document.querySelectorAll('.image-preview');
-        previewImgs.forEach((img) => { img.src = placeholderSvg; });
-        if (imageInputsWrap) {
-            imageInputsWrap.innerHTML = '';
-            const row = document.createElement('div');
-            row.className = 'image-row flex items-center gap-2';
-            row.innerHTML = `
-                <input type="url" name="image_1" placeholder="https://..."
-                    class="image-input w-full rounded-lg border border-slate-700/70 bg-slate-900/50 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-sky-400 focus:outline-none">
-                <div class="h-14 w-14 rounded-md border border-slate-700/60 bg-slate-900/40 p-1">
-                    <img class="image-preview h-full w-full rounded object-cover" alt="Preview" src="${placeholderSvg}">
-                </div>
-            `;
-            imageInputsWrap.appendChild(row);
-        }
-    };
-
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         const images = Array.from(document.querySelectorAll('.image-input'))
@@ -316,7 +293,25 @@ const initAdmin = () => {
             .then((res) => res.json())
             .then(() => fetchProducts())
             .then(() => {
-                resetForm();
+                form.reset();
+                editingId = null;
+                if (submitBtn) submitBtn.textContent = 'Tambah Produk';
+                if (formTitle) formTitle.textContent = 'Tambah Barang Baru';
+                const previewImgs = document.querySelectorAll('.image-preview');
+                previewImgs.forEach((img) => { img.src = placeholderSvg; });
+                if (imageInputsWrap) {
+                    imageInputsWrap.innerHTML = '';
+                    const row = document.createElement('div');
+                    row.className = 'image-row flex items-center gap-2';
+                    row.innerHTML = `
+                        <input type="url" name="image_1" placeholder="https://..."
+                            class="image-input w-full rounded-lg border border-slate-700/70 bg-slate-900/50 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-sky-400 focus:outline-none">
+                        <div class="h-14 w-14 rounded-md border border-slate-700/60 bg-slate-900/40 p-1">
+                            <img class="image-preview h-full w-full rounded object-cover" alt="Preview" src="${placeholderSvg}">
+                        </div>
+                    `;
+                    imageInputsWrap.appendChild(row);
+                }
                 renderList();
                 renderPager();
                 alert(wasEditing ? 'Barang berhasil diperbarui!' : 'Barang berhasil ditambahkan!');
@@ -502,12 +497,6 @@ const initAdmin = () => {
     if (tabOverview) tabOverview.addEventListener('click', showOverviewView);
     if (tabList) tabList.addEventListener('click', showListView);
     if (tabAdd) tabAdd.addEventListener('click', showAddView);
-    if (cancelEdit) {
-        cancelEdit.addEventListener('click', () => {
-            resetForm();
-            showListView();
-        });
-    }
 
     if (pager) {
         pager.addEventListener('click', (event) => {

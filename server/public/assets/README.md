@@ -3,6 +3,5 @@
 Contains the client-side resources.
 
 ## Subdirectories
-- `css/`: Stylesheets (`style.css`).
-- `js/`: Application logic (`app.js`, `data.js`).
+- `js/`: Application logic (`landing/index.js`, `admin/index.js`).
 - `img/`: Images (Placeholders, etc).
